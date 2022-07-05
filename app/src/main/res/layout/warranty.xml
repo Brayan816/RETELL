@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/LV_IMAGE"
+        android:layout_gravity="center"
+        android:layout_width="90dp"
+        android:src="@drawable/ic_baseline_warning_24"
+        android:layout_height="90dp">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/black"
+            android:text="Solicitante"
+            android:id="@+id/LV_SOLICITANTE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp">
+        </TextView>
+        <TextView
+            android:textColor="@color/black"
+            android:text="Tamaño"
+            android:id="@+id/LV_TAMAÑO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:textColor="@color/black"
+            android:text="Serie"
+            android:id="@+id/LV_SERIE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:textColor="@color/black"
+            android:text="Estado"
+            android:id="@+id/LV_ESTADO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:textColor="@color/black"
+            android:text="Posicion"
+            android:id="@+id/LV_POSICION"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="app.jabrex.assot.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="app.jabrex.assot.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="app.jabrex.assot.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="app.jabrex.assot.BlankFragment"
+        android:label="@string/menu_garantia"
+        tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/retell_llantas"
+        android:name="app.jabrex.assot.retell_llantas"
+        android:label="@string/r_agregar"
+        tools:layout="@layout/fragment_retell_llantas" />
+    <fragment
+        android:id="@+id/inventario"
+        android:name="app.jabrex.assot.inventario"
+        android:label="INVENTARIO"
+        tools:layout="@layout/fragment_inventario" />
+</navigation>
