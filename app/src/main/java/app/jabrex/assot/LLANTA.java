@@ -397,33 +397,6 @@ public class LLANTA extends ConexionMysql{
                 S.addBatch(Query1);
                 S.addBatch(Query2);
                 S.executeBatch();
-                //
-                //PreparedStatement preparedStatement = con.prepareStatement(Query3);
-                /*preparedStatement.setString(1,Marca);
-                preparedStatement.setString(2,Tamaño);
-                preparedStatement.setString(3,Serie);
-                preparedStatement.setString(4,Costado);
-                preparedStatement.setString(5,Banda);
-                preparedStatement.setString(6,Hombro);
-                preparedStatement.setString(7,Otro);
-                preparedStatement.setString(8,FechaS);
-                preparedStatement.setString(9,FechaE);
-                preparedStatement.setString(10,Fecha);
-                preparedStatement.setString(11,FechaG);
-                preparedStatement.setString(12, Integer.toString(Valor));
-                preparedStatement.setString(13,Integer.toString(Abono));
-                preparedStatement.setInt(14,Integer.parseInt(Identificacion));
-                preparedStatement.setString(15,Orden);
-                preparedStatement.setString(16,Solicitante);
-                preparedStatement.setInt(17,Integer.parseInt(Identificacion));
-                preparedStatement.setString(18,Direccion);
-                preparedStatement.setString(19,Barrio);
-                preparedStatement.setString(20,Ciudad);
-                preparedStatement.setInt(21,Integer.parseInt(Telefono));
-                preparedStatement.setInt(22,Integer.parseInt(Identificacion));
-                */
-                //preparedStatement.executeUpdate();
-
                 Check=true;
             }
             else {

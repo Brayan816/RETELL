@@ -9,14 +9,17 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -30,10 +33,13 @@ import android.widget.ToggleButton;
 import com.example.assot.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class INICIO extends AppCompatActivity {
     private static final String TEG = "SearchActivity";
     private static final int REQUEST_CODE = 1;
-    public TextView FTW;
+    public TextView FTW,NOTAS;
     public Button BY, BD;
     ProgressDialog progressDialog;
     public TextInputEditText TD1, TD2;
@@ -52,20 +58,15 @@ public class INICIO extends AppCompatActivity {
         TD1 = (TextInputEditText) findViewById(R.id.T221);
         TD2 = (TextInputEditText) findViewById(R.id.T222);
         BD = findViewById(R.id.button2);
-        SELECTOR=findViewById(R.id.switch1);
-        SELECTOR.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    VG.DBIP="192.168.1.200";
-                    TD1.setText(VG.DBIP);
-                }
-                else {
-                    VG.DBIP="192.168.0.200";
-                    TD1.setText(VG.DBIP);
-                }
-            }
-        });
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+        NOTAS=findViewById(R.id.NOTAS);
+        if(ipAddress.charAt(8)=='0'){
+            VG.DBIP="192.168.0.200";
+        }
+        else {
+            VG.DBIP="192.168.1.200";
+        }
         PERMISOSXD();
         BD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +80,9 @@ public class INICIO extends AppCompatActivity {
                     A2 = "";
                 }
                 DATOSF();
-                //new Dback().execute("");
             }
         });
         CARGAR();
-
     }
 
     public void DATOSF() {
