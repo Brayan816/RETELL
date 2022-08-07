@@ -88,32 +88,7 @@ public class ConexionMysql {
             //VG.Comentario_Consulta=E.getMessage();
         }
     }
-    public String JOIN(){
-        String K1="";
-        try{
-            if(OpenConnection())
-            {
-                String Query="SELECT L.ORDEN_S AS ORDEN, C.SOLICITANTE AS SOLICITANTE FROM llantas L JOIN clientes C ON C.N_IDE=L.N_IDE WHERE C.N_IDE=?";
-                PreparedStatement preparedStatement=con.prepareStatement(Query);
-                preparedStatement.setString(1,"1091183353");
-                ResultSet fr = preparedStatement.executeQuery();
-                if (fr.next()) {
-                    K1=fr.getNString("ORDEN")+fr.getNString("SOLICITANTE");
-                }
-                else{
-                    K1="ERROR EN C1";
-                }
-            }
-            else {
-                K1="ERROR AL ESTABLECER CONEXION";
-            }
-        }
-        catch (Exception E){
-            K1=E.getMessage();
-        }
-        CloseConnection();
-        return K1;
-    }
+
     public boolean CHECK(){
         boolean Check=false;
         String RES2="";

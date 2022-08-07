@@ -141,6 +141,8 @@ public class LLANTA extends ConexionMysql{
         {
             if(OpenConnection()) {
                 String QUERY = "insert into llantas (SOLICITANTE,N_IDE,DIRECCION,BARRIO,CIUDAD,TELEFONO,MARCA_LLANTA,TAMAÑO,SERIE,COSTADO,BANDA,HOMBRO,OTRO,FECHA,ORDEN_S,VALOR,ABONO,E_A,UBICACION,POSICION,FECHAS,FECHAE,TIPO_S,FECHAG,M1,M2,M3,M4,M5,M6,N1,N2,N3,N4,N5,N6,PM1,PM2,PM3,PM4,PM5,PM6) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String QUERY_CLIENTE=
+                        "INSERT INTO clientes (S)";
                 PreparedStatement preparedStatement = con.prepareStatement(QUERY);
                 preparedStatement.setString(1, this.Solicitante);
                 preparedStatement.setString(2, this.Identificacion);
@@ -386,13 +388,6 @@ public class LLANTA extends ConexionMysql{
                 String Query2=  "UPDATE clientes " +
                                 "SET SOLICITANTE='"+Solicitante+"',N_IDE="+Identificacion+",DIRECCION='"+Direccion+"',BARRIO='"+Barrio+"',CIUDAD='"+Ciudad+"',TELEFONO="+Telefono+" " +
                                 "WHERE N_IDE="+A1;
-                String Query3="UPDATE llantas " +
-                        "SET MARCA='Goodyear2' " +
-                        "WHERE ORDEN_S=10486";
-                String Query4=  "UPDATE clientes " +
-                                "SET SOLICITANTE='JAMES2' " +
-                                "WHERE N_IDE=1098151723";
-                String Query = "UPDATE llantas SET SOLICITANTE=?,N_IDE=?,DIRECCION=?,BARRIO=?,CIUDAD=?,TELEFONO=?,MARCA_LLANTA=?,TAMAÑO=?,SERIE=?,COSTADO=?,BANDA=?,HOMBRO=?,OTRO=?,FECHAS=?,FECHAE=?,VALOR=?,ABONO=? WHERE ORDEN_S=?";
                 Statement S=con.createStatement();
                 S.addBatch(Query1);
                 S.addBatch(Query2);
