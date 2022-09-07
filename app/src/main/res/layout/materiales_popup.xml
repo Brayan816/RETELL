@@ -512,7 +512,7 @@
             app:layout_constraintTop_toBottomOf="@id/MB_Caucho_3"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/S2_Cemento"
+                android:id="@+id/S2_CordonFabre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -549,7 +549,7 @@
             app:layout_constraintTop_toBottomOf="@id/MB_Caucho_4"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/S2_Disolvente"
+                android:id="@+id/S2_Cemento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -587,7 +587,7 @@
             app:layout_constraintTop_toBottomOf="@id/MB_Caucho_5"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/S2_CordonFabre"
+                android:id="@+id/S2_Disolvente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"

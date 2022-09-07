@@ -305,7 +305,7 @@
             android:layout_marginTop="20dp"
             android:textSize="15dp"
             android:textColor="@color/black"
-            android:text="Fecha De Salida (Programada)"
+            android:text="Fecha de Entrega"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sliTD10" />
@@ -382,7 +382,7 @@
             android:layout_marginTop="20dp"
             android:textSize="15dp"
             android:textColor="@color/black"
-            android:text="Fecha De Entrega"
+            android:text="Fecha de Salida Programada"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sliTD13" />

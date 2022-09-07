@@ -43,7 +43,7 @@ import app.jabrex.assot.MainActivity;
 import app.jabrex.assot.VG;
 
 
-public class HomeFragment extends Fragment {
+public class    HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     public String A1,A2,A3;
@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment {
             Session session=null;
             try {
                 final JSch jsch = new JSch();
-                session = jsch.getSession("pi", "192.168.0.200", 22);
+                session = jsch.getSession("pi", VG.DBIP, 22);
                 session.setPassword("RETELL");
                 final Properties config = new Properties();
                 config.put("StrictHostKeyChecking", "no");

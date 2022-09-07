@@ -81,7 +81,6 @@ public class   editar_datos extends AppCompatActivity {
             FS_DIA = findViewById(R.id.S_DIA);
             FS_MES = findViewById(R.id.S_MES);
             FS_AÑO = findViewById(R.id.S_AÑO);
-
             //FECHA DE SALIDA DE LA LLANTA
             FI_DIA = findViewById(R.id.DIAINGRESO);
             FI_MES = findViewById(R.id.MESINGRESO);
@@ -97,9 +96,9 @@ public class   editar_datos extends AppCompatActivity {
             String[] TPU4 = new String[]{"100R", "10R22.5", "11R22.5", "235-285R", "8.25R", "900R", "9R22.5", "255/75R", "1000R", "11R24.5", "12R22.5", "295/80R22.5", "305/70R/22.5", "315/70R22.5", "365R", "12R24.5", "1200R20", "1200R24", "13R22.5", "R15/80R", "385R"};
             ArrayAdapter<String> A_Tamaño = new ArrayAdapter<>(this, R.layout.dropdownitem, TPU4);
             T_Tamaño.setAdapter(A_Tamaño);
-            String[] TP_DIA = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+            String[] TP_DIA = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
             ArrayAdapter<String> F_DIA = new ArrayAdapter<>(this, R.layout.dropdownitem, TP_DIA);
-            String[] TP_MES = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+            String[] TP_MES = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
             ArrayAdapter<String> F_MES = new ArrayAdapter<>(this, R.layout.dropdownitem, TP_MES);
             String[] TP_AÑO = new String[]{"19", "20", "21", "22", "23", "24", "25"};
             ArrayAdapter<String> F_AÑO = new ArrayAdapter<>(this, R.layout.dropdownitem, TP_AÑO);
@@ -274,13 +273,13 @@ public class   editar_datos extends AppCompatActivity {
             llanta.Tamaño=T_Tamaño.getText().toString();
             llanta.Serie=T_Serie.getText().toString();
             llanta.Otro=T_Otro.getText().toString();
-            llanta.FechaS=FE_MES.getText().toString()+"/"+FE_DIA.getText().toString()+"/"+FE_AÑO.getText().toString();
-            llanta.FechaE=FS_MES.getText().toString()+"/"+FS_DIA.getText().toString()+"/"+FS_AÑO.getText().toString();
+            llanta.FechaE=FE_MES.getText().toString()+"/"+FE_DIA.getText().toString()+"/"+FE_AÑO.getText().toString();
+            llanta.FechaS=FS_MES.getText().toString()+"/"+FS_DIA.getText().toString()+"/"+FS_AÑO.getText().toString();
             llanta.Fecha=FI_MES.getText().toString()+"/"+FI_DIA.getText().toString()+"/"+FI_AÑO.getText().toString();
             llanta.FechaG=FG_MES.getText().toString()+"/"+FG_DIA.getText().toString()+"/"+FG_AÑO.getText().toString();
             llanta.Valor=Integer.parseInt(T_Valor.getText().toString());
             llanta.Abono=Integer.parseInt(T_Abono.getText().toString());
-            new Dback().execute("");
+            new Dback().execute("   ");
         }
         catch (Exception E){
             ToastGenerator("Ocurrio un error al realizar la actualizacion de los datos");

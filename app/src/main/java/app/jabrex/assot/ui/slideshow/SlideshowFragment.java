@@ -43,6 +43,7 @@ public class SlideshowFragment extends Fragment {
     private SlideshowViewModel slideshowViewModel;
     AutoCompleteTextView AT1,AT2,AT3,AT1S,AT2S,AT3S,Ttamaño;
     Button ENVIAR;
+    private Boolean E_C=false;
     private TextInputLayout Tdir;
     private TextInputEditText Tsolicitante,Tidentificacion,Tdireccion,Tbarrio,Tciudad,Ttelefono,Tmarca,Tserie,Totro,Torden,Tvalor,Tabono;
     public String A1,A2,A3,A4,A5,A6,A7,A8,A9,A11,A12,A13,A11S,A12S,A13S,A14,A15,A16;
@@ -106,24 +107,24 @@ public class SlideshowFragment extends Fragment {
         P1=root.findViewById(R.id.PRAD);
 
         //DIA
-        String[] TPU = new String[]{"01", "02", "03", "04", "05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+        String[] TPU = new String[]{"1", "2", "3", "4", "5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>( getContext(), R.layout.dropdownitem, TPU);
         AT1.setAdapter(adapter);
         AT1S.setAdapter(adapter);
         //MES
-        String[] TPU3 = new String[]{"2018", "2019", "2020", "2021","2022","2023"};
+        String[] TPU3 = new String[]{"18", "19", "20", "21","22","23"};
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>( getContext(), R.layout.dropdownitem, TPU3);
         AT2.setAdapter(adapter2);
         AT2S.setAdapter(adapter2);
         //AÑO
-        String[] TPU2 = new String[]{"01", "02", "03", "04", "05","06","07","08","09","10","11","12"};
+        String[] TPU2 = new String[]{"1", "2", "3", "4", "5","6","7","8","9","10","11","12"};
         ArrayAdapter<String> adapter3 = new ArrayAdapter<>( getContext(), R.layout.dropdownitem, TPU2);
         AT3.setAdapter(adapter3);
         AT3S.setAdapter(adapter3);
 
         Ttamaño=root.findViewById(R.id.sliT8);
-        String[] TPU4 = new String[]{"100R","10R22.5","11R22.5","235-285R","8.25R","900R","9R22.5","255/75R","1000R","11R24.5","12R22.5","295/80R22.5","305/70R/22.5","315/70R22.5","365R","12R24.5","1200R20","1200R24","13R22.5","R15/80R","385R"};
+        String[] TPU4 = new String[]{"100R","10R22.5","11R22.5","235-285R","8.25R","900R","9R22.5","255/75R","1000R","11R24.5","12R22.5","295/80R22.5","305/70R/22.5","315/70R22.5","365R","12R24.5","1200R20","1200R24","13R22.5","R15/80R","385R","315/80R22.5","19.5L-24","20.5R24","23.5R25","29.5R25","275/70R22.5","275/80R22.5","1400R24","1400-24","825R16","365/60R22.5","385/60R22.5","425/60R22.5"};
         ArrayAdapter<String> adapter4 = new ArrayAdapter<>( getContext(), R.layout.dropdownitem, TPU4);
         Ttamaño.setAdapter(adapter4);
         //BLOQUEO DE FECHA
@@ -245,9 +246,9 @@ public class SlideshowFragment extends Fragment {
         A13S=AT2S.getText().toString();
         A12S=AT3S.getText().toString();
         //FECHA FINAL
-        Fecha=A11+"/"+A12+"/"+A13;
+        Fecha=A12+"/"+A11+"/"+A13;
         //FECHA SALIDA
-        FechaS=A11S+"/"+A12S+"/"+A13S;
+        FechaS=A12S+"/"+A11S+"/"+A13S;
         //ODEN DE SERVICIO
         Orden=Torden.getText().toString();
         //VALOR
@@ -321,10 +322,11 @@ public class SlideshowFragment extends Fragment {
             try {
                 if(Caso==1)
                 {
-                    Check=llanta.REGISTRAR();
+                    Check=llanta.REGISTRAR(E_C);
                 }
                 else if(Caso==2){
                     Check=llanta.Datos_Cliente();
+                    E_C=Check;
                 }
 
             } catch (Exception e) {
@@ -336,10 +338,8 @@ public class SlideshowFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            //Totro.setText(VG.Comentario_Consulta);
             if(Caso==1){
                 if(Check) {
-                    ToastGenerator(VG.Comentario_Consulta);
                     vaciar();
                 }
                 else {
@@ -355,7 +355,7 @@ public class SlideshowFragment extends Fragment {
                     Ttelefono.setText(llanta.Telefono);
                 }
                 else {
-                    ToastGenerator(VG.Comentario_Consulta);
+                    ToastGenerator("El cliente aun no ha sido registrado");
                 }
             }
             N3.dismiss();

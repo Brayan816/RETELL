@@ -1,11 +1,7 @@
     package app.jabrex.assot;
 
 import android.os.Build;
-import android.renderscript.ScriptGroup;
-import android.util.Pair;
-
 import androidx.annotation.RequiresApi;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -59,6 +55,10 @@ public class LLANTA extends ConexionMysql{
     public String PM4;
     public String PM5;
     public String PM6;
+    public String hLargo;
+    public String hAncho;
+    public String hProfundidad;
+    public String hAlambres;
 
     public LLANTA(String Solicitante,String Identficacion,String Direccion,String Barrio,String Ciudad,String Telefono,String Marca,String Tamaño,String Serie,String Costado,
                   String Banda, String Hombro,String Otro,String Fecha,String Orden,int Valor,int Abono,String E_A,String Ubicacion,String Posicion,String FechaS,String FechaE,String TipoS,String FechaG)
@@ -134,65 +134,95 @@ public class LLANTA extends ConexionMysql{
         CloseConnection();
         return Check;
     }
-    public Boolean REGISTRAR()
+    public Boolean REGISTRAR(Boolean E_C)
     {
         boolean Check=false;
         try
         {
             if(OpenConnection()) {
-                String QUERY = "insert into llantas (SOLICITANTE,N_IDE,DIRECCION,BARRIO,CIUDAD,TELEFONO,MARCA_LLANTA,TAMAÑO,SERIE,COSTADO,BANDA,HOMBRO,OTRO,FECHA,ORDEN_S,VALOR,ABONO,E_A,UBICACION,POSICION,FECHAS,FECHAE,TIPO_S,FECHAG,M1,M2,M3,M4,M5,M6,N1,N2,N3,N4,N5,N6,PM1,PM2,PM3,PM4,PM5,PM6) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                String QUERY_CLIENTE=
-                        "INSERT INTO clientes (S)";
-                PreparedStatement preparedStatement = con.prepareStatement(QUERY);
-                preparedStatement.setString(1, this.Solicitante);
-                preparedStatement.setString(2, this.Identificacion);
-                preparedStatement.setString(3, this.Direccion);
-                preparedStatement.setString(4, this.Barrio);
-                preparedStatement.setString(5, this.Ciudad);
-                preparedStatement.setString(6, this.Telefono);
-                preparedStatement.setString(7, this.Marca);
-                preparedStatement.setString(8, this.Tamaño);
-                preparedStatement.setString(9, this.Serie);
-                preparedStatement.setString(10, this.Costado);
-                preparedStatement.setString(11, this.Banda);
-                preparedStatement.setString(12, this.Hombro);
-                preparedStatement.setString(13, this.Otro);
-                preparedStatement.setString(14, this.Fecha);
-                preparedStatement.setString(15, this.Orden);
-                preparedStatement.setString(16, Integer.toString(this.Valor));
-                preparedStatement.setString(17, Integer.toString(this.Abono));
-                preparedStatement.setString(18, this.E_A);
-                preparedStatement.setString(19, "");
-                preparedStatement.setString(20, "");
-                preparedStatement.setString(21, this.FechaS);
-                preparedStatement.setString(22, "");
-                preparedStatement.setString(23, "REPARACION");
-                preparedStatement.setString(24, "");
-                preparedStatement.setString(25, "");
-                preparedStatement.setString(26, "");
-                preparedStatement.setString(27, "");
-                preparedStatement.setString(28, "");
-                preparedStatement.setString(29, "");
-                preparedStatement.setString(30, "");
-                preparedStatement.setString(31, "");
-                preparedStatement.setString(32, "");
-                preparedStatement.setString(33, "");
-                preparedStatement.setString(34, "");
-                preparedStatement.setString(35, "");
-                preparedStatement.setString(36, "");
-                preparedStatement.setString(37, "");
-                preparedStatement.setString(38, "");
-                preparedStatement.setString(39, "");
-                preparedStatement.setString(40, "");
-                preparedStatement.setString(41, "");
-                preparedStatement.setString(42, "");
-                preparedStatement.executeUpdate();
-                VG.Comentario_Consulta="REGISTRADO EXITOSAMENTE";
-                Check=true;
+                if(E_C)
+                {
+                    String Query="INSERT INTO llantas (N_IDE,MARCA,TAMA,SERIE,COSTADO,BANDA,HOMBRO,OTRO,FECHA,ORDEN_S,VALOR,ABONO,E_A,UBICACION,POSICION,FECHAS,FECHAE,TIPO_S,FECHAG,M1,M2,M3,M4,M5,M6,N1,N2,N3,N4,N5,N6,PM1,PM2,PM3,PM4,PM5,PM6,hLargo,hAncho,hProfundidad,hAlambres)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement preparedStatement=con.prepareStatement(Query);
+                    preparedStatement.setString(1,this.Identificacion);
+                    preparedStatement.setString(2,this.Marca);
+                    preparedStatement.setString(3,this.Tamaño);
+                    preparedStatement.setString(4,this.Serie);
+                    preparedStatement.setString(5,this.Costado);
+                    preparedStatement.setString(6,this.Banda);
+                    preparedStatement.setString(7,this.Hombro);
+                    preparedStatement.setString(8,this.Otro);
+                    preparedStatement.setString(9,this.Fecha);
+                    preparedStatement.setString(10,this.Orden);
+                    preparedStatement.setString(11,Integer.toString(this.Valor));
+                    preparedStatement.setString(12,Integer.toString(this.Abono));
+                    preparedStatement.setString(13,this.E_A);
+                    preparedStatement.setString(14,"");
+                    preparedStatement.setString(15,"");
+                    preparedStatement.setString(16,this.FechaS);
+                    preparedStatement.setString(17,this.FechaE);
+                    preparedStatement.setString(18,"REPARACION");
+                    preparedStatement.setString(19,this.FechaG  );
+                    preparedStatement.setString(20,"");
+                    preparedStatement.setString(21,"");
+                    preparedStatement.setString(22,"");
+                    preparedStatement.setString(23,"");
+                    preparedStatement.setString(24,"");
+                    preparedStatement.setString(25,"");
+                    preparedStatement.setString(26,"");
+                    preparedStatement.setString(27,"");
+                    preparedStatement.setString(28,"");
+                    preparedStatement.setString(29,"");
+                    preparedStatement.setString(30,"");
+                    preparedStatement.setString(31,"");
+                    preparedStatement.setString(32,"");
+                    preparedStatement.setString(33,"");
+                    preparedStatement.setString(34,"");
+                    preparedStatement.setString(35,"");
+                    preparedStatement.setString(36,"");
+                    preparedStatement.setString(37,"");
+                    preparedStatement.setString(38,"0");
+                    preparedStatement.setString(39,"0");
+                    preparedStatement.setString(40,"0");
+                    preparedStatement.setString(41,"0");
+                    preparedStatement.executeUpdate();
+                    VG.Comentario_Consulta="REGISTRADO EXITOSAMENTE";
+                    Check=true;
+                }
+                else {
+                    String Query="INSERT INTO llantas (N_IDE,MARCA,TAMA,SERIE,COSTADO,BANDA,HOMBRO,OTRO,FECHA,ORDEN_S,VALOR,ABONO,E_A,UBICACION,POSICION,FECHAS,FECHAE,TIPO_S,FECHAG,M1,M2,M3,M4,M5,M6,N1,N2,N3,N4,N5,N6,PM1,PM2,PM3,PM4,PM5,PM6,hLargo,hAncho,hProfundidad,hAlambres)VALUES ("
+                            +this.Identificacion +",'"
+                            +this.Marca+"','"
+                            +this.Tamaño+"','"
+                            +this.Serie+"','"
+                            +this.Costado+"','"
+                            +this.Banda+"','"
+                            +this.Hombro+"','"
+                            +this.Otro+"','"
+                            +this.Fecha+"','"
+                            +this.Orden+"','"
+                            +this.Valor+"','"
+                            +this.Abono+"','"
+                            +this.E_A+"','','','"
+                            +this.FechaS+"','','REPARACION','','','','','','','','','','','','','','','','','','','','0','0','0','0')";
+                    String Query2="INSERT INTO clientes (SOLICITANTE,N_IDE,DIRECCION,BARRIO,CIUDAD,TELEFONO) VALUES ('"
+                            +this.Solicitante+"',"
+                            +this.Identificacion+",'"
+                            +this.Direccion+"','"
+                            +this.Barrio+"','"
+                            +this.Ciudad+"',"
+                            +this.Telefono+")";
+                    Statement statement = con.createStatement();
+                    statement.addBatch(Query);
+                    statement.addBatch(Query2);
+                    int[] results=statement.executeBatch();
+                    VG.Comentario_Consulta="LLANTA Y USUARIO REGISTRADO EXITOSAMENTE"+results.toString();
+                    Check=true;
+                }
             }
         }
         catch (Exception E){
-            VG.Comentario_Consulta=E.getMessage();
+            VG.Comentario_Consulta=E.getMessage()+E_C;
         }
         CloseConnection();
         return Check;
@@ -202,7 +232,7 @@ public class LLANTA extends ConexionMysql{
         boolean Check=false;
         try {
             if (OpenConnection()) {
-                String Query = "SELECT C.SOLICITANTE AS SOLICITANTE, C.N_IDE AS N_IDE,C.DIRECCION AS DIRECCION,C.BARRIO AS BARRIO,C.CIUDAD AS CIUDAD, C.TELEFONO AS TELEFONO,L.MARCA AS MARCA, L.TAMA AS TAMA,L.SERIE AS SERIE,L.COSTADO AS COSTADO,L.BANDA AS BANDA, L.HOMBRO AS HOMBRO,L.OTRO AS OTRO,L.FECHA AS FECHA,L.VALOR AS VALOR,L.ABONO AS ABONO,L.E_A AS E_A,L.UBICACION AS UBICACION,L.POSICION AS POSICION,L.FECHAS AS FECHAS,L.FECHAE AS FECHAE,L.TIPO_S AS TIPO_S,L.FECHAG AS FECHAG,L.M1 AS M1,L.M2 AS M2,L.M3 AS M3,L.M4 AS M4,L.M5 AS M5,L.M6 AS M6,L.N1 AS N1,L.N2 AS N2,L.N3 AS N3,L.N4 AS N4,L.N5 AS N5,L.N6 AS N6,L.PM1 AS PM1,L.PM2 AS PM2,L.PM3 AS PM3,L.PM4 AS PM4,L.PM5 AS PM5,L.PM6 AS PM6 "
+                String Query = "SELECT C.SOLICITANTE AS SOLICITANTE, C.N_IDE AS N_IDE,C.DIRECCION AS DIRECCION,C.BARRIO AS BARRIO,C.CIUDAD AS CIUDAD, C.TELEFONO AS TELEFONO,L.MARCA AS MARCA, L.TAMA AS TAMA,L.SERIE AS SERIE,L.COSTADO AS COSTADO,L.BANDA AS BANDA, L.HOMBRO AS HOMBRO,L.OTRO AS OTRO,L.FECHA AS FECHA,L.VALOR AS VALOR,L.ABONO AS ABONO,L.E_A AS E_A,L.UBICACION AS UBICACION,L.POSICION AS POSICION,L.FECHAS AS FECHAS,L.FECHAE AS FECHAE,L.TIPO_S AS TIPO_S,L.FECHAG AS FECHAG,L.M1 AS M1,L.M2 AS M2,L.M3 AS M3,L.M4 AS M4,L.M5 AS M5,L.M6 AS M6,L.N1 AS N1,L.N2 AS N2,L.N3 AS N3,L.N4 AS N4,L.N5 AS N5,L.N6 AS N6,L.PM1 AS PM1,L.PM2 AS PM2,L.PM3 AS PM3,L.PM4 AS PM4,L.PM5 AS PM5,L.PM6 AS PM6, L.hLargo AS hLargo, L.hAncho AS hAncho, L.hProfundidad AS hProfundidad, L.hAlambres AS hAlambres     "
                 +"FROM llantas L "+
                 "JOIN clientes C ON C.N_IDE=L.N_IDE "+
                 "WHERE L.ORDEN_S=?";
@@ -251,6 +281,10 @@ public class LLANTA extends ConexionMysql{
                     PM4 = (fr.getString("PM4"));
                     PM5 = (fr.getString("PM5"));
                     PM6 = (fr.getString("PM6"));
+                    hLargo = (fr.getString("hLargo"));
+                    hAncho = (fr.getString("hAncho"));
+                    hProfundidad = (fr.getString("hProfundidad"));
+                    hAlambres = (fr.getString("hAlambres"));
                     VG.Comentario_Consulta="Datos cargados exitosamente";
                     Check=true;
                 }
@@ -319,7 +353,7 @@ public class LLANTA extends ConexionMysql{
         boolean Check=false;
         try {
             if (OpenConnection()) {
-                String Query = "SELECT * FROM llantas where N_IDE = ? ";
+                String Query = "SELECT * FROM clientes where N_IDE = ? ";
                 PreparedStatement preparedStatement = con.prepareStatement(Query);
                 preparedStatement.setString(1, Identificacion);
                 ResultSet fr = preparedStatement.executeQuery();
@@ -403,6 +437,29 @@ public class LLANTA extends ConexionMysql{
         }
         CloseConnection();
         return Check;
+    }
+    public Boolean ActualizarHerida(){
+
+        boolean CHECK=false;
+        try {
+            if (OpenConnection())
+            {
+                String Query = "UPDATE llantas SET hLargo=?,hAncho=? ,hProfundidad=?, hAlambres=? WHERE ORDEN_S=?";
+                PreparedStatement preparedStatement = con.prepareStatement(Query);
+                preparedStatement.setString(1,this.hLargo);
+                preparedStatement.setString(2,this.hAncho);
+                preparedStatement.setString(3,this.hProfundidad);
+                preparedStatement.setString(4,this.hAlambres);
+                preparedStatement.setString(5,this.Orden);
+                preparedStatement.executeUpdate();
+                CHECK=true;
+            }
+        }
+        catch (Exception E){
+            VG.Comentario_Consulta=E.getMessage();
+        }
+        CloseConnection();
+        return CHECK;
     }
 
     public String getSolicitante() { return Solicitante; }

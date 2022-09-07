@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -72,7 +73,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 public class MainActivity extends AppCompatActivity {
     public TextView Pmarca,PORDEN,PSERIE,PFECHA,PVALOR,PABONO,PTAMA,PSOLI,PDIRE,PBARRIO,PCIUDAD,PTELEFONO,PFECHAS,PFECHAE,TIPOS;
-    public Button Bmateriaeles;
+    public Button Bmateriaeles,Bherida;
     public ProgressBar P1;
     public ImageButton APosicion,AEstado,IBA_Abono,GARANTIAB,EditarDatos;
     public String DF1;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public String Soli,nide,dire,barrio,ciudad,tel,mllanta,tamaño,serie,costado,banda,hombro,otro,fecha,orden_S,valor,abono,EA,LOTED,POSID,PFECHAX,FECHAE,FECHAG,SERVICIO;
     public LLANTA llanta =new LLANTA();
     public int Caso;
-    Dialog dialog;
+    Dialog dialog, dialog2;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -278,7 +279,75 @@ public class MainActivity extends AppCompatActivity {
                 ShowPopUP();
             }
         });
+        Bherida=findViewById(R.id.Bherida);
+        dialog2=new Dialog(this);
+        Bherida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowHerida();
+            }
+        });
         BuscarLlanta();
+    }
+    public void ShowHerida(){
+        try {
+            dialog2.setContentView(R.layout.herida_popup);
+            dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            TextInputEditText LARGO, ANCHO, PROFUNDIDAD , ALAMBRES;
+            TextView RESULTADO;
+            LARGO=dialog2.findViewById(R.id.H_S_LARGO);
+            ANCHO=dialog2.findViewById(R.id.H_S_Ancho);
+            PROFUNDIDAD=dialog2.findViewById(R.id.H_S_Profundidad);
+            ALAMBRES=dialog2.findViewById(R.id.H_S_Alambres);
+            RESULTADO=dialog2.findViewById(R.id.H_4);
+            ImageButton Calcular=dialog2.findViewById(R.id.H_Calcular);
+            ImageButton GuardarHerida=dialog2.findViewById(R.id.GuardarHerida);
+            LARGO.setText(llanta.hLargo);
+            ANCHO.setText(llanta.hAncho);
+            PROFUNDIDAD.setText(llanta.hProfundidad);
+            ALAMBRES.setText(llanta.hAlambres);
+            if(llanta.hProfundidad.equals("0")){
+                int RR= Integer.parseInt((llanta.hProfundidad));
+                double R2 = (double)(((RR+9)*10)+60)/60;
+                DecimalFormat Formater = new DecimalFormat("0.00");
+                RESULTADO.setText(Formater.format(R2)+"Horas");
+
+            }
+            int L1,A1,P1;
+            Calcular.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    try {
+                        int R1 = Integer.parseInt(PROFUNDIDAD.getText().toString());
+                        double R2 = (double)(((R1+9)*10)+60)/60;
+                        DecimalFormat Formater = new DecimalFormat("0.00");
+                        RESULTADO.setText(Formater.format(R2)+"Horas");
+                    }
+                    catch (Exception E)
+                    {
+                        RESULTADO.setText(E.getMessage());
+                    }
+
+                }
+            });
+            GuardarHerida.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    llanta.hLargo=LARGO.getText().toString();
+                    llanta.hAncho=ANCHO.getText().toString();
+                    llanta.hProfundidad=PROFUNDIDAD.getText().toString();
+                    llanta.hAlambres=ALAMBRES.getText().toString();
+                    Caso=5;
+                    new Dback().execute("");
+                }
+            });
+
+            dialog2.show();
+        }
+        catch (Exception E){
+            ToastGenerator(E.getMessage());
+        }
     }
     public void ShowPopUP(){
         try{
@@ -467,7 +536,7 @@ public class MainActivity extends AppCompatActivity {
             PFECHA.setText("FECHA DE INGRESO: "+ FechaI[1]+"/"+FechaI[0]+"/"+FechaI[2]);
         }
         if(llanta.FechaS.equals("") || llanta.FechaS.equals("//")){
-            PFECHAS.setText("FECHA DE ENTREGA: Sin fehcha programada");
+            PFECHAS.setText("FECHA DE ENTREGA: Sin Fecha programada");
         }
         else
         {
@@ -598,6 +667,9 @@ public class MainActivity extends AppCompatActivity {
                 else if(Caso==4){
                     Check=llanta.A_FechaG();
                 }
+                else if(Caso==5){
+                    Check=llanta.ActualizarHerida();
+                }
                 else if(Caso==10){
                     Check=llanta.ActualizarMateriales();
                 }
@@ -619,7 +691,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         ToastGenerator(VG.Comentario_Consulta);
-                        //QUERY.setText(VG.Comentario_Consulta);
                     }
                 }
                 else if(Caso==1){
@@ -655,6 +726,14 @@ public class MainActivity extends AppCompatActivity {
                     if(Check){
                         ToastGenerator("Fecha de garantia actualizada con exito");
                         GARANTIA.setText(llanta.FechaG);
+                    }
+                    else {
+                        ToastGenerator("Ocurrio un error al actualizar la fecha de garantia");
+                    }
+                }
+                else if (Caso==5){
+                    if(Check){
+                        ToastGenerator("Herida atualizada con exito");
                     }
                     else {
                         ToastGenerator("Ocurrio un error al actualizar la fecha de garantia");

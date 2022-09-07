@@ -47,6 +47,7 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -90,9 +91,6 @@ public class fotos extends AppCompatActivity {
         BackBtn=findViewById(R.id.fotos_back);
         NextBtn=findViewById(R.id.fotos_next);
         Contador=findViewById(R.id.fotos_posicion);
-        File DIRA= new File(getExternalFilesDir(null),"H5.png");
-        String pag=DIRA.getAbsolutePath();
-
         //Iniciar lista
         imageUris=new ArrayList<>();
         //
@@ -128,6 +126,9 @@ public class fotos extends AppCompatActivity {
                     imageIs.setImageURI(imageUris.get(position));
                     Contador.setText((position+1)+"/"+Fotos);
                 }
+                else {
+                    ToastGenerator("No hay mas imagenes");
+                }
             }
         });
 
@@ -136,7 +137,6 @@ public class fotos extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pickImagesIntent();
-                //new Dback().execute("");
             }
         });
 
@@ -179,14 +179,14 @@ public class fotos extends AppCompatActivity {
                     if (data.getClipData() != null) {
                         //picked multiple images
                         Fotos = data.getClipData().getItemCount();
-                        //imageUris.add(Uri.fromFile(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/H4.png")));
+                        String nn="Cantidad de fotos seleccionadas: "+Fotos;
+                        ToastGenerator(nn);
                         for (int i = 0; i < Fotos; i++) {
-                            //String path=data.getClipData().getItemAt(i)
                             Uri imageUri = data.getClipData().getItemAt(i).getUri();
                             imageUris.add(imageUri);
                             InputStream inputStream=getContentResolver().openInputStream(imageUri);
-                            OutputStream OT= new FileOutputStream(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+ServerFotos+1+".png"));
-                            UploadImages.add("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+ServerFotos+1+".png");
+                            OutputStream OT= new FileOutputStream(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1+i)+".jpeg"));
+                            UploadImages.add("/storage/emulated/0/Android/data/app.jabrex.retell/files/CompImage"+(ServerFotos+1+i)+".jpeg");
                             byte[] buf = new byte[1024];
                             int len;
                             while((len=inputStream.read(buf))>0){
@@ -194,18 +194,18 @@ public class fotos extends AppCompatActivity {
                             }
                             OT.close();
                             inputStream.close();
+                            ComprimirImagen("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1+i)+".jpeg",(ServerFotos+1+i));
+
                         }
-                        ToastGenerator(A1.toString());
                         imageIs.setImageURI(imageUris.get(0));
                         position = 0;
                         Contador.setText("1/" + Fotos);
                     } else {
                         //picked single image
-
                         Fotos = 1;
                         Uri imageUri = data.getData();
                         InputStream inputStream=getContentResolver().openInputStream(imageUri);
-                        OutputStream OT= new FileOutputStream(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+ServerFotos+1+".png"));
+                        OutputStream OT= new FileOutputStream(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1)+".jpeg"));
                         byte[] buf = new byte[1024];
                         int len;
                         while((len=inputStream.read(buf))>0){
@@ -213,12 +213,12 @@ public class fotos extends AppCompatActivity {
                         }
                         OT.close();
                         inputStream.close();
-                        UploadImages.add("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+ServerFotos+1+".png");
+                        ComprimirImagen("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1)+".jpeg",(ServerFotos+1));
+                        UploadImages.add("/storage/emulated/0/Android/data/app.jabrex.retell/files/CompImage"+(ServerFotos+1)+".jpeg");
                         imageUris.add(imageUri);
                         imageIs.setImageURI(imageUris.get(0));
                         position = 0;
                         Contador.setText("1/1");
-
                     }
                 }
             }
@@ -226,6 +226,21 @@ public class fotos extends AppCompatActivity {
         } catch (Exception E) {
             ToastGenerator(E.getMessage());
         }
+    }
+    private Boolean ComprimirImagen(String Path,int i){
+        Boolean N1=false;
+        try {
+            OutputStream outputStream=new FileOutputStream("/storage/emulated/0/Android/data/app.jabrex.retell/files/CompImage"+(i)+".jpeg");
+            BitmapFactory.Options bitmapOptions=new BitmapFactory.Options();
+            Bitmap bitmap=BitmapFactory.decodeFile("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(i)+".jpeg",bitmapOptions);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,90,outputStream);
+            outputStream.close();
+            N1=true;
+        }
+        catch (Exception E){
+            VG.Comentario_Consulta=E.getMessage();
+        }
+        return N1;
     }
 
 
@@ -257,10 +272,8 @@ public class fotos extends AppCompatActivity {
     }
     private class Dback extends AsyncTask<String, Void, String> {
         ProgressDialog N3 = null;
-        String FTA="";
         Session session2=null;
         boolean Check=false;
-        private Object Path;
         Vector<LsEntry> fileList;
         List<String> list =new ArrayList<>();
         @Override
@@ -329,16 +342,36 @@ public class fotos extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try{
-                if (Check) {
-                    ToastGenerator("Imagenes Cargadas con Exito--"+list.size());
-                    LoadServerImages(list);
-                } else {
-
+                if(Check){
+                    switch (UpDown){
+                        case 1:{
+                            if(list.size()==0){
+                                ToastGenerator("Aun no se han cargado imagenes al servidor");
+                            }
+                            else
+                            {
+                                ToastGenerator("Las imagenes han sido descargadas con exito del servidor:"+list.size());
+                                LoadServerImages(list);
+                            }
+                            break;
+                        }
+                        case 0:{
+                            ToastGenerator("Las imagenes han sido cargadas con exito al servidor");
+                        }
+                    }
+                }
+                else {
                     ToastGenerator(VG.Comentario_Consulta);
                 }
             }
             catch (Exception E){
-                ToastGenerator(E.getMessage());
+                if(UpDown==0){
+                    ToastGenerator("Ocurrio un error al descargar las imagenes del servidor: "+E.getMessage());
+                }
+                else if (UpDown==1){
+                    ToastGenerator("Ocurrio un error al cargar las imagenes al servidor: "+E.getMessage());
+                }
+
             }
             N3.dismiss();
         }
