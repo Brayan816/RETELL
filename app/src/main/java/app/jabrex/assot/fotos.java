@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jcraft.jsch.ChannelSftp.LsEntry;
 
 import android.Manifest;
@@ -31,6 +33,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
@@ -62,24 +66,19 @@ import java.util.Vector;
 
 public class fotos extends AppCompatActivity {
 
-    private Button ChargeBtn,UploadImagaBtn;
     private ImageButton BackBtn,NextBtn;
     private ImageSwitcher imageIs;
+    private FloatingActionButton chargeBtn,uploadImage,expand;
     private List<String> UploadImages=new ArrayList<>();
     private TextView Contador;
     private ArrayList<Uri> imageUris;
     private int UpDown=0;
     private static final int PICK_IMAGES_CODE=0;
     private List<String> A1;
-    int position =0;
-    private int ServerFotos=0;
-
-    int Fotos =0;
-
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private int position=0,Fotos=0,ServerFotos=0;
+    private Animation anOpen,anClose,anRotateForwad,anRotateBackward;
+    boolean isOpen = false;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +86,9 @@ public class fotos extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.WHITE);
         getSupportActionBar().hide();
+        expand=findViewById(R.id.fbExpandPhoto);
+        chargeBtn=findViewById(R.id.fbCargar);
+        uploadImage=findViewById(R.id.fbUpload);
         imageIs=findViewById(R.id.imageSwitcher);
         BackBtn=findViewById(R.id.fotos_back);
         NextBtn=findViewById(R.id.fotos_next);
@@ -121,34 +123,55 @@ public class fotos extends AppCompatActivity {
         NextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(position<imageUris.size()-1){
+                if(position<(imageUris.size()-1)){
                     position++;
                     imageIs.setImageURI(imageUris.get(position));
-                    Contador.setText((position+1)+"/"+Fotos);
+                    Contador.setText((position+1)+"/"+(Fotos));
                 }
                 else {
                     ToastGenerator("No hay mas imagenes");
                 }
             }
         });
-
-        ChargeBtn=findViewById(R.id.Boton_1);
-        ChargeBtn.setOnClickListener(new View.OnClickListener() {
+        expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
+            }
+        });
+        chargeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pickImagesIntent();
             }
         });
 
-        UploadImagaBtn=findViewById(R.id.fotos_subir);
-        UploadImagaBtn.setOnClickListener(new View.OnClickListener() {
+        uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UploadImagesTosServer();
             }
         });
+        //Animations
+        anOpen= AnimationUtils.loadAnimation(this,R.anim.fab_open);
+        anClose=AnimationUtils.loadAnimation(this,R.anim.fab_close);
+        anRotateForwad=AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
+        anRotateBackward=AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
         AutoChargeImages();
 
+    }
+    private void animateFab(){
+        if (isOpen){
+            expand.startAnimation(anRotateForwad);
+            chargeBtn.startAnimation(anClose);
+            uploadImage.startAnimation(anClose);
+            isOpen=false;
+        }else {
+            expand.startAnimation(anRotateBackward);
+            chargeBtn.startAnimation(anOpen);
+            uploadImage.startAnimation(anOpen);
+            isOpen=true;
+        }
     }
     private void AutoChargeImages(){
         UpDown=1;
@@ -178,10 +201,10 @@ public class fotos extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (data.getClipData() != null) {
                         //picked multiple images
-                        Fotos = data.getClipData().getItemCount();
+                        Fotos +=data.getClipData().getItemCount();
                         String nn="Cantidad de fotos seleccionadas: "+Fotos;
                         ToastGenerator(nn);
-                        for (int i = 0; i < Fotos; i++) {
+                        for (int i = 0; i < data.getClipData().getItemCount(); i++) {
                             Uri imageUri = data.getClipData().getItemAt(i).getUri();
                             imageUris.add(imageUri);
                             InputStream inputStream=getContentResolver().openInputStream(imageUri);
@@ -195,14 +218,13 @@ public class fotos extends AppCompatActivity {
                             OT.close();
                             inputStream.close();
                             ComprimirImagen("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1+i)+".jpeg",(ServerFotos+1+i));
-
                         }
                         imageIs.setImageURI(imageUris.get(0));
                         position = 0;
                         Contador.setText("1/" + Fotos);
                     } else {
                         //picked single image
-                        Fotos = 1;
+                        Fotos += 1;
                         Uri imageUri = data.getData();
                         InputStream inputStream=getContentResolver().openInputStream(imageUri);
                         OutputStream OT= new FileOutputStream(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(ServerFotos+1)+".jpeg"));
@@ -218,7 +240,7 @@ public class fotos extends AppCompatActivity {
                         imageUris.add(imageUri);
                         imageIs.setImageURI(imageUris.get(0));
                         position = 0;
-                        Contador.setText("1/1");
+                        Contador.setText("1/"+Fotos);
                     }
                 }
             }
@@ -233,7 +255,7 @@ public class fotos extends AppCompatActivity {
             OutputStream outputStream=new FileOutputStream("/storage/emulated/0/Android/data/app.jabrex.retell/files/CompImage"+(i)+".jpeg");
             BitmapFactory.Options bitmapOptions=new BitmapFactory.Options();
             Bitmap bitmap=BitmapFactory.decodeFile("/storage/emulated/0/Android/data/app.jabrex.retell/files/UploadImage"+(i)+".jpeg",bitmapOptions);
-            bitmap.compress(Bitmap.CompressFormat.JPEG,90,outputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,70,outputStream);
             outputStream.close();
             N1=true;
         }
@@ -245,31 +267,32 @@ public class fotos extends AppCompatActivity {
 
 
     private void LoadServerImages(List<String> ImageList){
-        ServerFotos =ImageList.size();
-        if(ImageList.size()>1){
-            //picked multiple images
+        String pathName="";
+
+        try{
             for (int i=0;i<ImageList.size();i++){
-                imageUris.add(Uri.fromFile(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/"+"TemporalImage"+i+ImageList.get(i).substring(ImageList.get(i).lastIndexOf(".")))));
+                pathName="/storage/emulated/0/Android/data/app.jabrex.retell/files/"+"TemporalImage"+i+ImageList.get(i).substring(ImageList.get(i).lastIndexOf("."));
+                imageUris.add(Uri.fromFile(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/"+"TemporalImage"+(i+1)+ImageList.get(i).substring(ImageList.get(i).lastIndexOf(".")))));
             }
             imageIs.setImageURI(imageUris.get(0));
             position=0;
-            Contador.setText("1/"+ImageList.size());
+            Fotos=ImageList.size();
+            ServerFotos=Fotos;
+            Contador.setText("1/"+Fotos);
         }
-        else if(ImageList.size()==1){
-            imageUris.add(Uri.fromFile(new File("/storage/emulated/0/Android/data/app.jabrex.retell/files/TemporalImage0"+ImageList.get(0).substring(ImageList.get(0).lastIndexOf(".")))));
-            imageIs.setImageURI(imageUris.get(0));
-            position=0;
-            Contador.setText("1/1");
+        catch (Exception E){
+            ToastGenerator(E.getMessage()+"---"+ImageList);
         }
-        else if(ImageList.size()==0){
-            ToastGenerator("Aun no se han cargado imagenes de la reparacion de la llanta");
-        }
+
+
     }
 
     public void ToastGenerator(String string){
         Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
         toast.show();
     }
+
+
     private class Dback extends AsyncTask<String, Void, String> {
         ProgressDialog N3 = null;
         Session session2=null;
@@ -309,7 +332,7 @@ public class fotos extends AppCompatActivity {
                         }
                     }
                     for (int i = 0; i < list.size(); i++) {
-                        File tempName = new File(getExternalFilesDir(null), "TemporalImage" + i + list.get(i).substring(list.get(i).lastIndexOf(".")));
+                        File tempName = new File(getExternalFilesDir(null), "TemporalImage" + (i+1) + list.get(i).substring(list.get(i).lastIndexOf(".")));
                         OutputStream tempOs = new FileOutputStream(tempName);
                         sftp.get("/home/pi/fotos/"+VG.ORDENS+"/" + list.get(i), tempOs);
                     }
@@ -335,10 +358,8 @@ public class fotos extends AppCompatActivity {
                 VG.Comentario_Consulta=E.getMessage();
 
             }
-
             return "";
         }
-
         @Override
         protected void onPostExecute(String s) {
             try{
@@ -357,6 +378,7 @@ public class fotos extends AppCompatActivity {
                         }
                         case 0:{
                             ToastGenerator("Las imagenes han sido cargadas con exito al servidor");
+                            break;
                         }
                     }
                 }

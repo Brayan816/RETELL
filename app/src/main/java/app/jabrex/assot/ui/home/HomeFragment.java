@@ -98,14 +98,14 @@ public class    HomeFragment extends Fragment {
                         A2= "SELECT L.MARCA AS MARCA,C.SOLICITANTE AS SOLICITANTE, L.SERIE AS SERIE,L.TAMA AS TAMA,L.ORDEN_S AS ORDEN_S,L.E_A AS E_A, L.UBICACION AS UBICACION, L.POSICION AS POSICION " +
                                 "FROM llantas L " +
                                 "JOIN clientes C ON L.N_IDE=C.N_IDE " +
-                                "WHERE C.N_IDE="+A1;
+                                "WHERE L.N_IDE="+A1;
                     }
                     else if(A3.equals("#O"))
                     {
                         A2="SELECT L.MARCA AS MARCA,C.SOLICITANTE AS SOLICITANTE, L.SERIE AS SERIE,L.TAMA AS TAMA,L.ORDEN_S AS ORDEN_S,L.E_A AS E_A, L.UBICACION AS UBICACION, L.POSICION AS POSICION " +
                                 "FROM llantas L " +
                                 "JOIN clientes C ON L.N_IDE=C.N_IDE " +
-                                "WHERE L.ORDEN_S="+A1;
+                                "WHERE L.ORDEN_S='"+A1+"'";
                     }
                     else if(A3.equals("SER"))
                     {

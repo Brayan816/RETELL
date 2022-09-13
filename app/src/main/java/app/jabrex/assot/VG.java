@@ -30,7 +30,4 @@ public class VG {
     public static String DBIP="192.168.0.200";
     public static String DBUSER="ROOT2";
     public static String DBPASS="RETELL";
-
-
-
 }

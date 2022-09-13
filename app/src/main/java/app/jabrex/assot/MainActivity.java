@@ -4,30 +4,16 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Properties;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
+import android.annotation.*;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.SQLException;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -36,81 +22,60 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.InputType;
-import android.text.Layout;
 import android.util.Pair;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.assot.R;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 public class MainActivity extends AppCompatActivity {
     public TextView Pmarca,PORDEN,PSERIE,PFECHA,PVALOR,PABONO,PTAMA,PSOLI,PDIRE,PBARRIO,PCIUDAD,PTELEFONO,PFECHAS,PFECHAE,TIPOS;
-    public Button Bmateriaeles,Bherida;
     public ProgressBar P1;
-    public ImageButton APosicion,AEstado,IBA_Abono,GARANTIAB,EditarDatos;
-    public String DF1;
-    public String DF2;
-    public String DF3;
+    private FloatingActionButton fbExpand, fbPhoto, fbEdit,fbHerida,fbMateriales;
+    private Animation anOpen,anClose,anRotateForwad,anRotateBackward;
+    public ImageButton APosicion,AEstado,IBA_Abono,GARANTIAB;
+    public String DF1,DF2,DF3,tamaño,serie,FECHAE,SERVICIO;
     public TextInputLayout PABONOA;
     public TextInputEditText ABONOX;
     public TextView TW1,TW2,TW3,GARANTIATEXT;
     AutoCompleteTextView LOTE,POSICION,ESTADO,GARANTIA;
     public TextInputLayout T11,T12,H_ESTADO,GARANTIAP;
-    public ImageButton PHOTO1,PHOTO2,PHOTO3,MATETEXT;
     private EditText QUERY;
     public ImageView EABONO,ETSERVICIO;
-    public String Soli,nide,dire,barrio,ciudad,tel,mllanta,tamaño,serie,costado,banda,hombro,otro,fecha,orden_S,valor,abono,EA,LOTED,POSID,PFECHAX,FECHAE,FECHAG,SERVICIO;
-    public LLANTA llanta =new LLANTA();
     public int Caso;
-    Dialog dialog, dialog2;
+    boolean isOpen = false;
+    private Dialog dialog, dialog2;
+    public LLANTA llanta=new LLANTA();
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(Color.WHITE);
         getSupportActionBar().hide();
         StrictMode.enableDefaults();
         QUERY=findViewById(R.id.editTextTextPersonName);
         QUERY.setVisibility(View.INVISIBLE);
-        //EDITAR DATOS
-        EditarDatos=findViewById(R.id.Editar_A);
-        EditarDatos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AbrirEditarDatos();
-            }
-        });
+
         //DATOS LLANTA
         Pmarca= findViewById(R.id.Pmarca);
         PTAMA=  findViewById(R.id.Ptama);
@@ -124,30 +89,7 @@ public class MainActivity extends AppCompatActivity {
         PORDEN= findViewById(R.id.Porden);
         TIPOS=  findViewById(R.id.PTIPO2);
         //ICONOS COLORES
-        PHOTO1=findViewById(R.id.PHOTO1);
-        CambiarIconoRojo(PHOTO1);
-        PHOTO2=findViewById(R.id.PHOTO2);
-        CambiarIconoRojo(PHOTO2);
-        PHOTO3=findViewById(R.id.PHOTO3);
-        CambiarIconoRojo(PHOTO3);
-        PHOTO1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AbrirFOTOS();
-            }
-        });
-        PHOTO2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AbrirFOTOS();
-            }
-        });
-        PHOTO3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AbrirFOTOS();
-            }
-        });
+
         ETSERVICIO=findViewById(R.id.Tipos_S);
         EABONO=findViewById(R.id.E_ABONO);
         //DATOS DEL SOLICITANTE
@@ -271,28 +213,74 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        Bmateriaeles=findViewById(R.id.PPRE5);
         dialog=new Dialog(this);
-        Bmateriaeles.setOnClickListener(new View.OnClickListener() {
+        dialog2=new Dialog(this);
+        //FLOATING ACTION BUTTONS
+        fbExpand=findViewById(R.id.fbExpand);
+        fbPhoto=findViewById(R.id.fbPhotos);
+        fbEdit=findViewById(R.id.fbEdit);
+        fbHerida=findViewById(R.id.fbHerida);
+        fbMateriales=findViewById(R.id.fbMateriales);
+        fbEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowPopUP();
+                AbrirEditarDatos();
             }
         });
-        Bherida=findViewById(R.id.Bherida);
-        dialog2=new Dialog(this);
-        Bherida.setOnClickListener(new View.OnClickListener() {
+        fbPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowHerida();
+                AbrirFOTOS();
+            }
+        });
+        fbHerida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {ShowHerida();}
+        });
+        fbMateriales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {ShowPopUP();}
+        });
+        //Animations
+        anOpen= AnimationUtils.loadAnimation(this,R.anim.fab_open);
+        anClose=AnimationUtils.loadAnimation(this,R.anim.fab_close);
+        anRotateForwad=AnimationUtils.loadAnimation(this,R.anim.rotate_forward);
+        anRotateBackward=AnimationUtils.loadAnimation(this,R.anim.rotate_backward);
+        fbExpand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animateFab();
             }
         });
         BuscarLlanta();
+    }
+
+
+    private void animateFab(){
+        if (isOpen){
+            fbExpand.startAnimation(anRotateForwad);
+            fbPhoto.startAnimation(anClose);
+            fbEdit.startAnimation(anClose);
+            fbHerida.startAnimation(anClose);
+            fbMateriales.startAnimation(anClose);
+            isOpen=false;
+        }else {
+            fbExpand.startAnimation(anRotateBackward);
+            fbPhoto.startAnimation(anOpen);
+            fbEdit.startAnimation(anOpen);
+            fbHerida.startAnimation(anOpen);
+            fbMateriales.startAnimation(anOpen);
+            isOpen=true;
+        }
     }
     public void ShowHerida(){
         try {
             dialog2.setContentView(R.layout.herida_popup);
             dialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Window window=dialog2.getWindow();
+            WindowManager.LayoutParams layoutParams=window.getAttributes();
+            layoutParams.gravity= Gravity.BOTTOM;
+            window.setAttributes(layoutParams);
             TextInputEditText LARGO, ANCHO, PROFUNDIDAD , ALAMBRES;
             TextView RESULTADO;
             LARGO=dialog2.findViewById(R.id.H_S_LARGO);
@@ -353,6 +341,10 @@ public class MainActivity extends AppCompatActivity {
         try{
             dialog.setContentView(R.layout.materiales_popup);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            Window window=dialog.getWindow();
+            WindowManager.LayoutParams layoutParams=window.getAttributes();
+            layoutParams.gravity= Gravity.BOTTOM;
+            window.setAttributes(layoutParams);
             AutoCompleteTextView M1,M2,M3,M4,M5,M6;
             TextInputEditText GM1,GM2,GM3,GM4,GM5,GM6;
             TextInputEditText MB1,MB2,MB3,MB4,MB5,MB6;

@@ -42,7 +42,6 @@
             android:name="app.jabrex.assot.NAVEGACION"
             android:label="@string/title_activity_n_a_v_e_g_a_c_i_o_n"
             android:theme="@style/Theme.ASSOT.NoActionBar" />
-        <activity android:name="app.jabrex.assot.instrucciones" />
         <activity android:name="app.jabrex.assot.MainActivity" />
 
         <uses-library android:name="org.apache.http.legacy" />

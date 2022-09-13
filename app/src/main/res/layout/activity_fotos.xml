@@ -11,10 +11,11 @@
         android:id="@+id/imageSwitcher"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageSwitcher>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageButton
         android:id="@+id/fotos_back"
@@ -34,25 +35,53 @@
         app:layout_constraintTop_toBottomOf="@+id/imageSwitcher">
     </ImageButton>
 
-    <Button
-        android:id="@+id/Boton_1"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Cargar"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbExpandPhoto"
+        android:background="@color/AZULO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="@color/RETELL"
+        android:elevation="5dp"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </Button>
+        app:maxImageSize="40dp" />
 
-    <Button
-        android:id="@+id/fotos_subir"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbCargar"
         android:layout_width="wrap_content"
-        android:text="Subir Fotos"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/Boton_1"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="@color/RETELL"
+        android:src="@drawable/folder"
+        app:fabCustomSize="45dp"
+        android:visibility="invisible"
+        android:layout_marginRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fbExpandPhoto"
+        app:maxImageSize="30dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:backgroundTint="@color/RETELL"
+        android:elevation="5dp"
+        android:visibility="invisible"
+        android:src="@drawable/upload"
+        app:fabCustomSize="45dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/fbExpandPhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fotos_posicion" />
+        app:maxImageSize="30dp" />
 
     <TextView
         android:id="@+id/fotos_posicion"

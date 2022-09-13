@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class   editar_datos extends AppCompatActivity {
-    AutoCompleteTextView T_Tamaño,FE_DIA,FE_MES,FE_AÑO,FS_DIA,FS_MES,FS_AÑO,FI_DIA,FI_MES,FI_AÑO,FG_DIA,FG_MES,FG_AÑO;
+    AutoCompleteTextView T_Tamaño,FE_DIA,FE_MES,FE_AÑO,FS_DIA,FS_MES,FS_AÑO,FI_DIA,FI_MES,FI_AÑO,FG_DIA,FG_MES,FG_AÑO,actEstado;
     public Button ENVIAR;
     public TextInputLayout AF1;
     private TextInputEditText T_Solicitante,T_Identificacion,T_Direccion,T_Barrio,T_Ciudad,T_Telefono,T_Marca,T_Serie,T_Otro,T_OrdenS,
@@ -47,8 +47,9 @@ public class   editar_datos extends AppCompatActivity {
     public ProgressBar progressBar;
     private TextView FG1;
     public RadioButton R_Costado,R_Hombro,R_Banda;
-    public LLANTA llanta=new LLANTA();
     private TextView DATOS;
+    private LLANTA llanta=new LLANTA();
+    private int CASO =0;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,11 @@ public class   editar_datos extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.WHITE);
         getSupportActionBar().hide();
         try {
+            String[] TPU5 = new String[]{"INGRESO", "ESCARIADO","PRESENTACION DE MATERIALES","TESTURIZADO","CEMENTADO","INSTALACION DE MATERIALES","RELLENO CON CAUCHO","VULCANIZACION","TERMINACION","LISTO PARA ENTREGA","ENTREGADO"};
+            ArrayAdapter<String> adapter4 = new ArrayAdapter<>( this, R.layout.dropdownitem, TPU5);
+            actEstado=findViewById(R.id.actEstado);
+            actEstado.setInputType(InputType.TYPE_NULL);
+            actEstado.setAdapter(adapter4);
             FG1=findViewById(R.id.INI);
             T_Solicitante = findViewById(R.id.T_Solicitante);
             T_Identificacion = findViewById(R.id.T_Identificacion);
@@ -176,19 +182,10 @@ public class   editar_datos extends AppCompatActivity {
 
         }
     private void BuscarDatos(){
-        try {
-            llanta.Orden=VG.ORDENS;
-            if(llanta.Buscar_Datos())
-            {
-                CARGARDATA();
-            }
-            else {
-                ToastGenerator("Todod MAL "+llanta.Solicitante);
-            }
-        }
-        catch (Exception e){
-            ToastGenerator(e.getMessage());
-        }
+        llanta.Orden=VG.ORDENS;
+        CASO=0;
+        new  Dback().execute("");
+
     }
     private void CARGARDATA(){
 
@@ -233,6 +230,7 @@ public class   editar_datos extends AppCompatActivity {
             T_Valor.setInputType(InputType.TYPE_CLASS_NUMBER);
             T_Abono.setText(String.valueOf(llanta.Abono));
             T_Abono.setInputType(InputType.TYPE_CLASS_NUMBER);
+            actEstado.setText(llanta.E_A,false);
             ToastGenerator("Datos Actualizados");
 
 
@@ -279,7 +277,9 @@ public class   editar_datos extends AppCompatActivity {
             llanta.FechaG=FG_MES.getText().toString()+"/"+FG_DIA.getText().toString()+"/"+FG_AÑO.getText().toString();
             llanta.Valor=Integer.parseInt(T_Valor.getText().toString());
             llanta.Abono=Integer.parseInt(T_Abono.getText().toString());
-            new Dback().execute("   ");
+            llanta.E_A=actEstado.getText().toString();
+            CASO=1;
+            new Dback().execute("");
         }
         catch (Exception E){
             ToastGenerator("Ocurrio un error al realizar la actualizacion de los datos");
@@ -298,7 +298,13 @@ public class   editar_datos extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                Check=llanta.Editar_Datos(A1);
+                if(CASO==0){
+                    Check=llanta.Buscar_Datos();
+                }
+                else if (CASO==1){
+                    Check=llanta.Editar_Datos(A1);
+                }
+
             } catch (Exception e) {
 
                 VG.Comentario_Consulta=e.getMessage();
@@ -309,13 +315,23 @@ public class   editar_datos extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try{
-                if (Check) {
-
-                    ToastGenerator("Datos se han cambiado con exito");
-                } else {
-                    ToastGenerator(VG.Comentario_Consulta);
-                    FG1.setText(VG.Comentario_Consulta);
+                if(CASO==0){
+                    if (Check) {
+                        ToastGenerator("Datos se han cargado con exito");
+                        CARGARDATA();
+                    } else {
+                        ToastGenerator(VG.Comentario_Consulta);
+                    }
                 }
+                else if(CASO==1){
+                    if (Check) {
+                        ToastGenerator("Datos se han cambiado con exito");
+                    } else {
+                        ToastGenerator(VG.Comentario_Consulta);
+                        FG1.setText(VG.Comentario_Consulta);
+                    }
+                }
+
             }
             catch (Exception E){
                 ToastGenerator(E.getMessage());

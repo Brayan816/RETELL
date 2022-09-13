@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable-v21/ic_menu_camera.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable-v21/ic_menu_gallery.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/backgorund_bottom.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/backpopup.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/fotos_back.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/fotos_next.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_add.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.206" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_autorenew_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.206" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_code_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_confirmation_number_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_construction_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_edit_calendar_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_location_city_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_navigation_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_open_in_full_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_phone_iphone_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_pin_drop_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_rotate_right_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_store_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_text_snippet_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_baseline_warning_27.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_c.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_calculate.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_camara11.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_camara12.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_inventario.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_proceso.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/ic_search.xml" value="0.2935" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/identify.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/input_bg.xml" value="0.2805" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/drawable/side_nav_bar.xml" value="0.206" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout-v21/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_datosretell.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_editar_datos.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_fotos.xml" value="0.67" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_i_n_i_c_i_o.xml" value="0.1984375" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_instrucciones.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_n_a_v_e_g_a_c_i_o_n.xml" value="0.1984375" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/app_bar_main.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/columna.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/content_main.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/dropdownitem.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_blank.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_gallery.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_inventario.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_retell_llantas.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_slideshow.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/herida_popup.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/main_activity.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/materiales.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/materiales_popup.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/nav_header_main.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/progress_dialog.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/warranty.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/activity_main_drawer.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/n_a_v_e_g_a_c_i_o_n.xml" value="0.2760416666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

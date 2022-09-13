@@ -417,7 +417,7 @@ public class LLANTA extends ConexionMysql{
             if(OpenConnection()){
                 String Query1=
                         "UPDATE llantas " +
-                        "SET MARCA='"+Marca+"',TAMA='"+Tamaño+"',SERIE='"+Serie+"',COSTADO='"+Costado+"',BANDA='"+Banda+"',HOMBRO='"+Hombro+"',OTRO='"+Otro+"',FECHAS='"+FechaS+"',FECHAE='"+FechaE+"',FECHA='"+Fecha+"',FECHAG='"+FechaG+"',VALOR='"+Valor+"',ABONO='"+Abono+"',N_IDE="+Identificacion+" " +
+                        "SET MARCA='"+Marca+"',TAMA='"+Tamaño+"',SERIE='"+Serie+"',COSTADO='"+Costado+"',BANDA='"+Banda+"',HOMBRO='"+Hombro+"',OTRO='"+Otro+"',FECHAS='"+FechaS+"',FECHAE='"+FechaE+"',FECHA='"+Fecha+"',FECHAG='"+FechaG+"',VALOR='"+Valor+"',ABONO='"+Abono+"',E_A='"+E_A+"', N_IDE="+Identificacion+" " +
                         "WHERE ORDEN_S="+Orden;
                 String Query2=  "UPDATE clientes " +
                                 "SET SOLICITANTE='"+Solicitante+"',N_IDE="+Identificacion+",DIRECCION='"+Direccion+"',BARRIO='"+Barrio+"',CIUDAD='"+Ciudad+"',TELEFONO="+Telefono+" " +
