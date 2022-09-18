@@ -6,37 +6,37 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_home"
+                    android:id="@+id/nav_busqueda"
                     android:icon="@drawable/search"
                     android:title="Busqueda"
                     android:iconTint="@color/black"/>
                 <item
-                    android:id="@+id/nav_gallery"
-                    android:icon="@drawable/phone"
+                    android:id="@+id/nav_escanear"
+                    android:icon="@drawable/im_icono_phone"
                     android:title="Escanear QR"
                     android:iconTint="@color/black"/>
                 <item
-                    android:id="@+id/nav_slideshow"
+                    android:id="@+id/nav_registrar"
                     android:icon="@drawable/ic_add"
                     android:title="Registrar nueva llanta" />
                 <item
-                    android:id="@+id/blankFragment"
+                    android:id="@+id/nav_garantia"
                     android:icon="@drawable/ic_baseline_construction_24"
                     android:title="GARANTIA"
                     android:iconTint="@color/black" />
             </group>
         </menu>
     </item>
-    <item android:title="INVENTARIO">
+    <item android:title="UTILIDAD">
         <menu>
             <group>
                 <item
-                    android:id="@+id/retell_llantas"
+                    android:id="@+id/nav_retell_llantas"
                     android:icon="@drawable/ic_add"
                     android:title="Agregar llanta"
                     android:iconTint="@color/RETELL"/>
                 <item
-                    android:id="@+id/inventario"
+                    android:id="@+id/nav_inventario"
                     android:icon="@drawable/ic_inventario"
                     android:title="Inventario"
                     android:iconTint="@color/black"/>

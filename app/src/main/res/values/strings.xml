@@ -7,10 +7,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="menu_home">BUSQUEDA</string>
-    <string name="menu_gallery">ESCANEAR QR</string>
-    <string name="menu_slideshow">REGISTRAR LLANTA</string>
-    <string name="menu_garantia">GARANTIA</string>
-    <string name="r_agregar">AGREGAR LLANTA</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_home">BUSQUEDA</string>
+    <string name="menu_gallery">ESCANEAR</string>
+    <string name="menu_slideshow">REGISTRAR</string>
+    <string name="menu_garantia">GARANTIA</string>
+    <string name="r_agregar">RETELL LLANTAS</string>
+    <string name="menu_inventario">INVENTARIO</string>
 </resources>

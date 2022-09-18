@@ -5,8 +5,19 @@
     android:layout_width="match_parent"
     android:padding="20dp"
     android:layout_height="match_parent"
-    tools:context="app.jabrex.assot.fotos">
+    tools:context="app.jabrex.retell.ui.fotos.ActivityFotos">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="RETELL"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/imageSwitcher"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
     <ImageSwitcher
         android:id="@+id/imageSwitcher"
         android:layout_width="match_parent"
@@ -21,7 +32,9 @@
         android:id="@+id/fotos_back"
         android:layout_width="50dp"
         android:layout_height="40dp"
+        android:tint="@color/black"
         android:src="@drawable/fotos_back"
+        android:background="@color/RETELL"
         app:layout_constraintStart_toStartOf="@+id/imageSwitcher"
         app:layout_constraintTop_toBottomOf="@+id/imageSwitcher">
     </ImageButton>
@@ -30,14 +43,15 @@
         android:id="@+id/fotos_next"
         android:layout_width="50dp"
         android:layout_height="40dp"
+        android:tint="@color/black"
         android:src="@drawable/fotos_next"
+        android:background="@color/RETELL"
         app:layout_constraintEnd_toEndOf="@+id/imageSwitcher"
         app:layout_constraintTop_toBottomOf="@+id/imageSwitcher">
     </ImageButton>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fbExpandPhoto"
-        android:background="@color/AZULO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -58,8 +72,9 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
         android:backgroundTint="@color/RETELL"
-        android:src="@drawable/folder"
+        android:src="@drawable/im_folder"
         app:fabCustomSize="45dp"
+        android:tint="@color/black"
         android:visibility="invisible"
         android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,6 +90,7 @@
         android:layout_gravity="end|bottom"
         android:backgroundTint="@color/RETELL"
         android:elevation="5dp"
+        android:tint="@color/black"
         android:visibility="invisible"
         android:src="@drawable/upload"
         app:fabCustomSize="45dp"

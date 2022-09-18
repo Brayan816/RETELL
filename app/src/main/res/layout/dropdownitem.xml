@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:text="TIPO DE USUARIO"
     android:textColor="@color/black"
     android:maxLines="1"
     android:backgroundTint="@color/white"
     android:background="@color/white"
     android:textAppearance="?attr/textAppearanceSubtitle1">
-
 </TextView>

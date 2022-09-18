@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.assot">
+    package="com.example.retell">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -35,18 +35,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ASSOT"
         android:usesCleartextTraffic="true">
-        <activity android:name="app.jabrex.assot.Datosretell"></activity>
-        <activity android:name="app.jabrex.assot.fotos" />
-        <activity android:name="app.jabrex.assot.editar_datos" />
+        <activity android:name="app.jabrex.retell.ui.fotos.ActivityFotos" />
+        <activity android:name="app.jabrex.retell.ui.editarDatos.ActivityEditarDatos" />
         <activity
-            android:name="app.jabrex.assot.NAVEGACION"
+            android:name="app.jabrex.retell.navegacion"
             android:label="@string/title_activity_n_a_v_e_g_a_c_i_o_n"
             android:theme="@style/Theme.ASSOT.NoActionBar" />
-        <activity android:name="app.jabrex.assot.MainActivity" />
+        <activity android:name="app.jabrex.retell.ui.principal.ActitvityPrincipal" />
 
         <uses-library android:name="org.apache.http.legacy" />
 
-        <activity android:name="app.jabrex.assot.INICIO">
+        <activity android:name="app.jabrex.retell.ui.login.ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +55,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="app.jabrex.assot.fileprovider"
+            android:authorities="app.jabrex.retell.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

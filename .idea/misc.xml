@@ -50,16 +50,18 @@
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout-v21/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_datosretell.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_editar_datos.xml" value="0.2760416666666667" />
-        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_fotos.xml" value="0.67" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_fotos.xml" value="0.25" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_i_n_i_c_i_o.xml" value="0.1984375" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_instrucciones.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_n_a_v_e_g_a_c_i_o_n.xml" value="0.1984375" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/activity_navegacion.xml" value="0.33" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/app_bar_main.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/columna.xml" value="0.2760416666666667" />
-        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/content_main.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/dropdownitem.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_blank.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_busqueda.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_gallery.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/fragment_inventario.xml" value="0.2760416666666667" />
@@ -72,8 +74,10 @@
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/nav_header_main.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/progress_dialog.xml" value="0.2760416666666667" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/layout/warranty.xml" value="0.2760416666666667" />
-        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/activity_main_drawer.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/n_a_v_e_g_a_c_i_o_n.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/menu/navegacion.xml" value="0.2760416666666667" />
+        <entry key="..\:/Users/galan/Desktop/APLICACION PROYECTO/retell/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3165" />
       </map>
     </option>
   </component>
